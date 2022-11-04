@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Button, Form, Input } from "antd";
 import type { AddRecipeDTO } from "../../types/interface";
+import { MinusCircleOutlined } from "@ant-design/icons";
 
 type AddRecipeFormProps = {
   width?: number;
@@ -52,6 +53,36 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
       >
         <Input />
       </Form.Item>
+
+      <Form.List name="products">
+        {(fields, { add, remove }, { errors }) => (
+          <>
+            {fields.map((field, index) => (
+              <Form.Item
+                {...field}
+                {...(index !== 0 && { wrapperCol: { offset: 8, span: 16 } })}
+                key={field.key}
+                label={index === 0 ? "Продукты" : ""}
+                rules={[{ required: true, message: "Обязательное поле!" }]}
+              >
+                <Input
+                  addonAfter={
+                    fields.length > 1 ? (
+                      <MinusCircleOutlined onClick={() => remove(field.name)} />
+                    ) : null
+                  }
+                />
+              </Form.Item>
+            ))}
+            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+              <Button type="dashed" onClick={() => add()}>
+                Добавить продукт
+              </Button>
+              <Form.ErrorList errors={errors} />
+            </Form.Item>
+          </>
+        )}
+      </Form.List>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">

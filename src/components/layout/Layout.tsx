@@ -5,13 +5,27 @@ import { Link, useLocation } from "react-router-dom";
 import { ROUTES } from "../../constants";
 
 const { Header, Content } = AntLayout;
-const { Item } = Menu;
 
 const breadcrumbNameMap: Record<string, string> = {
   [ROUTES.RECIPES]: "Рецепты",
   [ROUTES.RECIPES_ADD]: "Добавление нового рецепта",
   [ROUTES.TODO_LIST]: "Todo List",
 };
+
+const menuItems = [
+  {
+    key: "/",
+    label: <Link to="/" children={<HomeFilled />} />,
+  },
+  {
+    key: ROUTES.TODO_LIST,
+    label: <Link to={ROUTES.TODO_LIST}>Todo List</Link>,
+  },
+  {
+    key: ROUTES.RECIPES,
+    label: <Link to={ROUTES.RECIPES}>Рецепты</Link>,
+  },
+];
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -39,19 +53,12 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <AntLayout style={{ minHeight: "100vh" }}>
       <Header>
-        <Menu theme="dark" mode="horizontal" selectedKeys={[location.pathname]}>
-          <Item key="/">
-            <Link to="/">
-              <HomeFilled />
-            </Link>
-          </Item>
-          <Item key={ROUTES.TODO_LIST}>
-            <Link to={ROUTES.TODO_LIST}>Todo List</Link>
-          </Item>
-          <Item key={ROUTES.RECIPES}>
-            <Link to={ROUTES.RECIPES}>Рецепты</Link>
-          </Item>
-        </Menu>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          selectedKeys={[location.pathname]}
+          items={menuItems}
+        />
       </Header>
       <Content>
         <div className="container">

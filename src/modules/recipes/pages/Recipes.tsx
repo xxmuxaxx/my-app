@@ -1,25 +1,36 @@
 import { Button, PageHeader } from "antd";
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../app/hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { ROUTES } from "../../../constants";
 import { RecipesList } from "../components/recipesList";
-import { selectRecipes } from "../recipesSlice";
+import { deleteRecipe, selectRecipes } from "../recipesSlice";
 
 export const Recipes = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const recipes = useAppSelector(selectRecipes);
+
+  const onDelete = (id: string) => {
+    dispatch(deleteRecipe(id));
+  };
+
+  const onOpen = (id: string) => {
+    navigate(id);
+  };
 
   return (
     <div className="recipes">
       <PageHeader
         title="Рецепты"
         style={{ margin: "0 0 24px", padding: 0 }}
-        extra={[
+        extra={
           <Link to={ROUTES.RECIPES_ADD}>
             <Button type="primary">Add new recipe</Button>
-          </Link>,
-        ]}
+          </Link>
+        }
       />
-      <RecipesList recipes={recipes} />
+      <RecipesList recipes={recipes} onDelete={onDelete} onOpen={onOpen} />
     </div>
   );
 };
