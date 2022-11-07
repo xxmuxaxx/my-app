@@ -1,0 +1,33 @@
+{
+  "translation": {
+    "actions": {
+      "add": "დამატება",
+      "delete": "ამოღება",
+      "clear": "ნათელი"
+    },
+    "forms": {
+      "requiredField": "საჭირო ველი!",
+      "invalidUrl": "არასწორი url"
+    },
+    "layout": {
+      "home": "მთავარი",
+      "todo-list": "დავალებების სია",
+      "recipes": "რეცეპტები",
+      "recipe-add": "ახალი რეცეპტის დამატება"
+    },
+    "todo-list": {
+      "title": "დავალებების სია",
+      "done": "შესრულებულია",
+      "not-done": "არ კეთდება"
+    },
+    "recipes": {
+      "add-new-recipe": "დაამატეთ ახალი რეცეპტი",
+      "recipe-not-found": "რეცეპტი ვერ მოიძებნა",
+      "title": "კერძის დასახელება",
+      "description": "მოკლე აღწერა",
+      "image": "სურათის URL",
+      "products": "პროდუქცია",
+      "add-product": "დაამატეთ პროდუქტი"
+    }
+  }
+}

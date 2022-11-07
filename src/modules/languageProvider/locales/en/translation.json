@@ -1,0 +1,33 @@
+{
+  "translation": {
+    "actions": {
+      "add": "Add",
+      "delete": "Delete",
+      "clear": "Clear"
+    },
+    "forms": {
+      "requiredField": "Required field!",
+      "invalidUrl": "Invalid url"
+    },
+    "layout": {
+      "home": "Home",
+      "todo-list": "Todo list",
+      "recipes": "Recipes",
+      "recipe-add": "Adding a new recipe"
+    },
+    "todo-list": {
+      "title": "Todo list",
+      "done": "Done",
+      "notDone": "Not done"
+    },
+    "recipes": {
+      "add-new-recipe": "Add new recipe",
+      "recipe-not-found": "Recipe not found",
+      "title": "Recipe name",
+      "description": "Description",
+      "image": "Image URL",
+      "products": "Products",
+      "add-product": "Add product"
+    }
+  }
+}

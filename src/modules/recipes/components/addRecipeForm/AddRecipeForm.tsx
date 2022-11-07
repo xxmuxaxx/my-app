@@ -1,7 +1,8 @@
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Form, Input } from "antd";
-import type { AddRecipeDTO } from "../../types/interface";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import type { AddRecipeDTO } from "../../types/interface";
 
 type AddRecipeFormProps = {
   width?: number;
@@ -16,6 +17,8 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
   onFinish,
   onChange,
 }) => {
+  const { t } = useTranslation();
+
   const onValuesChange = (_: any, values: AddRecipeDTO) => {
     onChange && onChange(values);
   };
@@ -32,23 +35,25 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
       style={{ width }}
     >
       <Form.Item
-        label="Название блюда"
+        label={t("recipes.title")}
         name="title"
-        rules={[{ required: true, message: "Обязательное поле!" }]}
+        rules={[
+          { required: true, message: t("forms.requiredField") as string },
+        ]}
       >
         <Input />
       </Form.Item>
 
-      <Form.Item label="Краткое описание" name="description">
+      <Form.Item label={t("recipes.description")} name="description">
         <Input.TextArea />
       </Form.Item>
 
       <Form.Item
-        label="URL картинки"
+        label={t("recipes.image")}
         name="image"
         rules={[
-          { required: true, message: "Обязательное поле!" },
-          { type: "url", message: "Не валидный url" },
+          { required: true, message: t("forms.requiredField") as string },
+          { type: "url", message: t("forms.invalidUrl") as string },
         ]}
       >
         <Input />
@@ -62,8 +67,13 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
                 {...field}
                 {...(index !== 0 && { wrapperCol: { offset: 8, span: 16 } })}
                 key={field.key}
-                label={index === 0 ? "Продукты" : ""}
-                rules={[{ required: true, message: "Обязательное поле!" }]}
+                label={index === 0 ? t("recipes.products") : ""}
+                rules={[
+                  {
+                    required: true,
+                    message: t("forms.requiredField") as string,
+                  },
+                ]}
               >
                 <Input
                   addonAfter={
@@ -76,7 +86,7 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
             ))}
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <Button type="dashed" onClick={() => add()}>
-                Добавить продукт
+                {t("recipes.add-product")}
               </Button>
               <Form.ErrorList errors={errors} />
             </Form.Item>
@@ -86,7 +96,7 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Создать
+          {t("actions.add")}
         </Button>
       </Form.Item>
     </Form>

@@ -1,0 +1,33 @@
+{
+  "translation": {
+    "actions": {
+      "add": "Добавить",
+      "delete": "Удалить",
+      "clear": "Очистить"
+    },
+    "forms": {
+      "requiredField": "Обязательное поле!",
+      "invalidUrl": "Не валидный url"
+    },
+    "layout": {
+      "home": "Главная",
+      "todo-list": "Список дел",
+      "recipes": "Рецепты",
+      "recipe-add": "Добавление нового рецепта"
+    },
+    "todo-list": {
+      "title": "Список дел",
+      "done": "Выполнено",
+      "notDone": "Не выполнено"
+    },
+    "recipes": {
+      "add-new-recipe": "Добавить новый рецепт",
+      "recipe-not-found": "Рецепт не найден",
+      "title": "Название блюда",
+      "description": "Краткое описание",
+      "image": "URL картинки",
+      "products": "Продукты",
+      "add-product": "Добавить продукт"
+    }
+  }
+}

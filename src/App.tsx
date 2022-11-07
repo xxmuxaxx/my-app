@@ -2,16 +2,16 @@ import React from "react";
 import { HashRouter as Router } from "react-router-dom";
 import "antd/dist/antd.min.css";
 
-import { Layout } from "./components/layout";
 import { AppRouter } from "./routing/AppRouter";
+import { LanguageProvider } from "./modules/languageProvider";
 
 function App() {
   return (
-    <Router>
-      <Layout>
+    <LanguageProvider>
+      <Router>
         <AppRouter />
-      </Layout>
-    </Router>
+      </Router>
+    </LanguageProvider>
   );
 }
 

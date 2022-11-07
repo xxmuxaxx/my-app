@@ -4,10 +4,12 @@ import { message } from "antd";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectActiveRecipe, setActiveRecipeId } from "../recipesSlice";
 import { RecipeDetailCard } from "../components/recipeDetailCard";
+import { useTranslation } from "react-i18next";
 
 export const RecipeDetail: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const recipe = useAppSelector(selectActiveRecipe);
 
@@ -23,9 +25,9 @@ export const RecipeDetail: FC = () => {
 
   useEffect(() => {
     if (recipe === undefined) {
-      message.error("Рецепт не найден", 1.5, () => navigate(-1));
+      message.error(t("recipe-not-found"), 1.5, () => navigate(-1));
     }
-  }, [navigate, recipe]);
+  }, [navigate, recipe, t]);
 
   return recipe ? <RecipeDetailCard recipe={recipe} /> : null;
 };

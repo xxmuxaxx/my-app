@@ -1,4 +1,5 @@
 import { Button, PageHeader } from "antd";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { ROUTES } from "../../../constants";
@@ -8,6 +9,7 @@ import { deleteRecipe, selectRecipes } from "../recipesSlice";
 export const Recipes = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const recipes = useAppSelector(selectRecipes);
 
@@ -22,11 +24,11 @@ export const Recipes = () => {
   return (
     <div className="recipes">
       <PageHeader
-        title="Рецепты"
+        title={t("layout.recipes")}
         style={{ margin: "0 0 24px", padding: 0 }}
         extra={
           <Link to={ROUTES.RECIPES_ADD}>
-            <Button type="primary">Add new recipe</Button>
+            <Button type="primary">{t("recipes.add-new-recipe")}</Button>
           </Link>
         }
       />

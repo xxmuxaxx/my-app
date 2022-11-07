@@ -9,15 +9,17 @@ import {
   selectTodos,
   toggleTodoIsCompleted,
 } from "./todoListSlice";
+import { useTranslation } from "react-i18next";
 
 export const TodoList = () => {
   const dispatch = useAppDispatch();
-  const [form] = useForm();
+  const { t } = useTranslation();
   const todos = useAppSelector(selectTodos);
+  const [form] = useForm();
 
   return (
     <>
-      <h1>Todo List</h1>
+      <h1>{t("todo-list.title")}</h1>
       <Form
         form={form}
         initialValues={{ message: "" }}
@@ -32,7 +34,7 @@ export const TodoList = () => {
         <Form.Item>
           <Space>
             <Button type="primary" htmlType="submit">
-              ДОБАВИТЬ
+              {t("actions.add")}
             </Button>
 
             <Button
@@ -43,7 +45,7 @@ export const TodoList = () => {
                 dispatch(resetTodos());
               }}
             >
-              ОЧИСТИТЬ
+              {t("actions.clear")}
             </Button>
           </Space>
         </Form.Item>
@@ -61,7 +63,9 @@ export const TodoList = () => {
                   dispatch(toggleTodoIsCompleted(todo.id));
                 }}
               >
-                {todo.isCompleted ? "Не выполнено" : "Выполнено"}
+                {todo.isCompleted
+                  ? t("todo-list.done")
+                  : t("todo-list.not-done")}
               </Button>,
               <Button
                 type="link"
@@ -69,7 +73,7 @@ export const TodoList = () => {
                   dispatch(deleteTodo(todo.id));
                 }}
               >
-                Удалить
+                {t("actions.delete")}
               </Button>,
             ]}
           >

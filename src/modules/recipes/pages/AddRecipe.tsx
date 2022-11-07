@@ -1,4 +1,5 @@
 import { PageHeader } from "antd";
+import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { AddRecipeForm } from "../components/addRecipeForm";
 import {
@@ -10,6 +11,7 @@ import { AddRecipeDTO } from "../types/interface";
 
 export const AddRecipe = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const addRecipeFields = useAppSelector(selectAddRecipeFields);
 
   const onFinish = () => {
@@ -23,7 +25,7 @@ export const AddRecipe = () => {
   return (
     <div className="add-recipe">
       <PageHeader
-        title="Добавление нового рецепта"
+        title={t("layout.recipe-add")}
         style={{ margin: "0 0 24px", padding: 0 }}
       />
       <AddRecipeForm
