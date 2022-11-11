@@ -13,7 +13,9 @@
       "home": "Home",
       "todo-list": "Todo list",
       "recipes": "Recipes",
-      "recipe-add": "Adding a new recipe"
+      "recipe-add": "Adding a new recipe",
+      "logout": "Log out of the system",
+      "logoutConfirm": "Are you sure you want to log out?"
     },
     "todo-list": {
       "title": "Todo list",

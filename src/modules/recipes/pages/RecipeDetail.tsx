@@ -1,10 +1,11 @@
-import { FC, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { message } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectActiveRecipe, setActiveRecipeId } from "../recipesSlice";
-import { RecipeDetailCard } from "../components/recipeDetailCard";
+import { FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { RecipeDetailCard } from "../components/recipeDetailCard";
+import { selectActiveRecipe, setActiveRecipeId } from "../recipesSlice";
 
 export const RecipeDetail: FC = () => {
   const dispatch = useAppDispatch();

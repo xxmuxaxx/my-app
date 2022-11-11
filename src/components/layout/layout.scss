@@ -1,0 +1,12 @@
+.layout {
+  min-height: 100vh;
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+  }
+
+  &__settings {
+    margin-left: auto;
+  }
+}

@@ -1,6 +1,8 @@
-import { Button, Input, Divider, List, Form, Space, Tag } from "antd";
-import { useForm } from "antd/lib/form/Form";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
+import { Button, Divider, Form, Input, List, Space, Tag } from "antd";
+import { useForm } from "antd/lib/form/Form";
+import { useTranslation } from "react-i18next";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   addTodo,
@@ -9,7 +11,6 @@ import {
   selectTodos,
   toggleTodoIsCompleted,
 } from "./todoListSlice";
-import { useTranslation } from "react-i18next";
 
 export const TodoList = () => {
   const dispatch = useAppDispatch();

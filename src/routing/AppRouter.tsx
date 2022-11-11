@@ -1,7 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 import { Layout } from "../components/layout";
 import { ROUTES } from "../constants";
-import { AddRecipe, Recipes, RecipeDetail } from "../modules/recipes";
+import { AddRecipe, RecipeDetail, Recipes } from "../modules/recipes";
 import { TodoList } from "../modules/todoList";
 import { Login } from "../pages";
 import { ProtectedRoute } from "./ProtectedRoute";

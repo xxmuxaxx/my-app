@@ -1,8 +1,10 @@
-import { FC } from "react";
-import { Image, Typography, List, Divider } from "antd";
-import { useTranslation } from "react-i18next";
-import { Recipe } from "../../types/interface";
 import "./recipeDetailCard.scss";
+
+import { Divider, Image, List, Typography } from "antd";
+import { FC } from "react";
+import { useTranslation } from "react-i18next";
+
+import { Recipe } from "../../types/interface";
 
 type RecipeDetailCardProps = {
   recipe: Recipe;

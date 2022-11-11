@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+
 import { API_URL } from "../constants";
 import { AppState, UserResponseDTO } from "../types/interface";
 import { RootState } from "./store";
@@ -27,6 +28,9 @@ const appSlice = createSlice({
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    logout: (state) => {
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
@@ -36,7 +40,7 @@ const appSlice = createSlice({
   },
 });
 
-export const { setIsLoading } = appSlice.actions;
+export const { setIsLoading, logout } = appSlice.actions;
 
 export const selectIsLoading = (state: RootState) => state.app.isLoading;
 export const selectUser = (state: RootState) => state.app.user;

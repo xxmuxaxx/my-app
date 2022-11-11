@@ -1,7 +1,8 @@
+import { MinusCircleOutlined } from "@ant-design/icons";
+import { Button, Form, Input } from "antd";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Form, Input } from "antd";
-import { MinusCircleOutlined } from "@ant-design/icons";
+
 import type { AddRecipeDTO } from "../../types/interface";
 
 type AddRecipeFormProps = {

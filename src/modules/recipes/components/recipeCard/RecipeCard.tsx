@@ -1,7 +1,8 @@
-import { FC, MouseEvent } from "react";
-import { Button, Card, Tooltip } from "antd";
-import { DeleteFilled } from "@ant-design/icons";
 import "./recipeCard.scss";
+
+import { DeleteFilled } from "@ant-design/icons";
+import { Button, Card, Tooltip } from "antd";
+import { FC, MouseEvent } from "react";
 
 const { Meta } = Card;
 

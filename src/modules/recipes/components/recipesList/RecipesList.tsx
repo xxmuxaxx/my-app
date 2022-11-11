@@ -1,5 +1,6 @@
+import { Col, Row } from "antd";
 import { FC } from "react";
-import { Row, Col } from "antd";
+
 import { Recipe } from "../../types/interface";
 import { RecipeCard } from "../recipeCard";
 

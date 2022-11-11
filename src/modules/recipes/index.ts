@@ -1,2 +1,2 @@
+export { AddRecipe, RecipeDetail, Recipes } from "./pages";
 export { recipesReducer } from "./recipesSlice";
-export { Recipes, AddRecipe, RecipeDetail } from "./pages";

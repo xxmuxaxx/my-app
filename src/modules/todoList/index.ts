@@ -1,2 +1,2 @@
-export { todoListReduces } from "./todoListSlice";
 export { TodoList } from "./TodoList";
+export { todoListReduces } from "./todoListSlice";
