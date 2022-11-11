@@ -4,6 +4,7 @@ export type AppState = {
 };
 
 export type User = {
+  id: string;
   name: string;
   avatar: string | null;
   isAdmin: boolean;

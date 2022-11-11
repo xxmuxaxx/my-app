@@ -38,9 +38,9 @@ const appSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      const { name, avatar, isAdmin } = action.payload;
-      state.user = { name, avatar, isAdmin };
-      userStorage.set("user", { name, avatar, isAdmin });
+      const { id, name, avatar, isAdmin } = action.payload;
+      state.user = { id, name, avatar, isAdmin };
+      userStorage.set("user", { id, name, avatar, isAdmin });
       state.isLoading = false;
     });
     builder.addCase(login.rejected, (state) => {

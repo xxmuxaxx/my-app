@@ -1,12 +1,15 @@
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
-import { Button, Divider, Form, Input, List, Space, Tag } from "antd";
-import { useForm } from "antd/lib/form/Form";
+import { Button, Divider, List, Tag } from "antd";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { selectIsLoading } from "../../app/appSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { AddTodoForm } from "./components/addTodoForm";
 import {
   addTodo,
   deleteTodo,
+  fetchTodos,
   resetTodos,
   selectTodos,
   toggleTodoIsCompleted,
@@ -15,45 +18,28 @@ import {
 export const TodoList = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+
+  const isLoading = useAppSelector(selectIsLoading);
   const todos = useAppSelector(selectTodos);
-  const [form] = useForm();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <h1>{t("todo-list.title")}</h1>
-      <Form
-        form={form}
-        initialValues={{ message: "" }}
-        onFinish={({ message }) => {
-          dispatch(addTodo(message));
-          form.resetFields();
-        }}
-      >
-        <Form.Item name="message" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item>
-          <Space>
-            <Button type="primary" htmlType="submit">
-              {t("actions.add")}
-            </Button>
+      <AddTodoForm
+        onTodoAdd={(message) => dispatch(addTodo(message))}
+        onTodosReset={() => dispatch(resetTodos())}
+      />
 
-            <Button
-              type="primary"
-              danger
-              htmlType="button"
-              onClick={() => {
-                dispatch(resetTodos());
-              }}
-            >
-              {t("actions.clear")}
-            </Button>
-          </Space>
-        </Form.Item>
-      </Form>
       <Divider />
+
       <List
         dataSource={todos}
+        loading={isLoading}
         renderItem={(todo) => (
           <List.Item
             key={todo.id}

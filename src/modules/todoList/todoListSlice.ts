@@ -1,13 +1,29 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 import moment from "moment";
 
+import { setIsLoading } from "../../app/appSlice";
 import { RootState } from "../../app/store";
+import { API_URL } from "../../constants";
 import { getRandomId } from "../../utils/getRandomId";
-import { TodoListState } from "./types/interface";
+import { TodoListState, TodoResponseDTO } from "./types/interface";
 
 const initialState: TodoListState = {
   todos: [],
 };
+
+export const fetchTodos = createAsyncThunk<TodoResponseDTO[]>(
+  "todoList/fetchTodos",
+  async (_, { dispatch }) => {
+    dispatch(setIsLoading(true));
+    try {
+      const response = await axios.get(`${API_URL}/todos/`);
+      return response.data;
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  }
+);
 
 const todoListSlice = createSlice({
   name: "todo-list",
@@ -34,6 +50,16 @@ const todoListSlice = createSlice({
           : todo
       );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTodos.fulfilled, (state, action) => {
+      state.todos = action.payload.map((todo) => ({
+        id: todo.id,
+        message: todo.text,
+        isCompleted: todo.status === "1" ? true : false,
+        createDate: todo.date,
+      }));
+    });
   },
 });
 
