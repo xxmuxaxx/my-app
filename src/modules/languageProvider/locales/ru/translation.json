@@ -9,6 +9,12 @@
       "requiredField": "Обязательное поле!",
       "invalidUrl": "Не валидный url"
     },
+    "login": {
+      "title": "Войти в систему",
+      "username": "Логин",
+      "password": "Пароль",
+      "login": "Войти"
+    },
     "layout": {
       "home": "Главная",
       "todo-list": "Список дел",

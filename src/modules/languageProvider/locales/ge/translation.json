@@ -9,6 +9,12 @@
       "requiredField": "საჭირო ველი!",
       "invalidUrl": "არასწორი url"
     },
+    "login": {
+      "title": "სისტემაში შესვლა",
+      "username": "მომხმარებლის სახელი",
+      "password": "პაროლი",
+      "login": "შესვლა"
+    },
     "layout": {
       "home": "მთავარი",
       "todo-list": "დავალებების სია",

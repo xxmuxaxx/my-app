@@ -10,10 +10,10 @@ const initialState: AppState = {
   user: null,
 };
 
-export const login = createAsyncThunk(
+type LoginProps = { username: string; password: string };
+export const login = createAsyncThunk<UserResponseDTO, LoginProps>(
   "app/login",
-  async (data: { username: string; password: string }) => {
-    const { username, password } = data;
+  async ({ username, password }) => {
     const response = await axios.get<UserResponseDTO>(
       `${API_URL}/users/?u=${username}&p=${password}`
     );
@@ -33,9 +33,16 @@ const appSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(login.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(login.fulfilled, (state, action) => {
       const { name, avatar, isAdmin } = action.payload;
       state.user = { name, avatar, isAdmin };
+      state.isLoading = false;
+    });
+    builder.addCase(login.rejected, (state) => {
+      state.isLoading = false;
     });
   },
 });

@@ -9,6 +9,12 @@
       "requiredField": "Required field!",
       "invalidUrl": "Invalid url"
     },
+    "login": {
+      "title": "Log in to the system",
+      "username": "Username",
+      "password": "Password",
+      "login": "Login"
+    },
     "layout": {
       "home": "Home",
       "todo-list": "Todo list",
