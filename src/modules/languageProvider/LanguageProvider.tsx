@@ -8,7 +8,8 @@ import { Locale } from "antd/lib/locale-provider";
 import React, { createContext, FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Languages } from "./types/interface";
+import { userStorage } from "../../utils";
+import { LanguageContextType, Languages } from "./types/interface";
 
 const antLocales: Record<string, Locale> = {
   [Languages.russian]: ru_RU,
@@ -16,13 +17,9 @@ const antLocales: Record<string, Locale> = {
   [Languages.georgian]: ka_GE,
 };
 
-export const LanguageContext = createContext<{
-  language: Languages;
-  setLanguage: React.Dispatch<React.SetStateAction<Languages>>;
-}>({
-  language: Languages.english,
-  setLanguage: () => {},
-});
+export const LanguageContext = createContext<LanguageContextType>(
+  {} as LanguageContextType
+);
 
 type LanguageProviderProps = {
   children: React.ReactElement;
@@ -30,15 +27,21 @@ type LanguageProviderProps = {
 
 export const LanguageProvider: FC<LanguageProviderProps> = ({ children }) => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState<Languages>(Languages.english);
-  const value = { language, setLanguage };
+  const [language, setLanguage] = useState<Languages>(
+    userStorage.get("language") || Languages.russian
+  );
+
+  function changeLanguage(language: Languages) {
+    setLanguage(language);
+    userStorage.set("language", language);
+  }
 
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [i18n, language]);
 
   return (
-    <LanguageContext.Provider value={value}>
+    <LanguageContext.Provider value={{ language, changeLanguage }}>
       <ConfigProvider locale={antLocales[language]}>{children}</ConfigProvider>
     </LanguageContext.Provider>
   );

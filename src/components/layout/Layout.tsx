@@ -38,7 +38,7 @@ export const Layout: FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const user = useAppSelector(selectUser);
-  const { language, setLanguage } = useContext(LanguageContext);
+  const { language, changeLanguage } = useContext(LanguageContext);
   const pathSnippets = location.pathname.split("/").filter(Boolean);
   const langCode = language === "en" ? "us" : language;
 
@@ -106,17 +106,17 @@ export const Layout: FC = () => {
                       {
                         key: "ru",
                         label: langLabels[Languages.russian],
-                        onClick: () => setLanguage(Languages.russian),
+                        onClick: () => changeLanguage(Languages.russian),
                       },
                       {
                         key: "en",
                         label: langLabels[Languages.english],
-                        onClick: () => setLanguage(Languages.english),
+                        onClick: () => changeLanguage(Languages.english),
                       },
                       {
                         key: "ge",
                         label: langLabels[Languages.georgian],
-                        onClick: () => setLanguage(Languages.georgian),
+                        onClick: () => changeLanguage(Languages.georgian),
                       },
                     ],
                   },
@@ -130,7 +130,9 @@ export const Layout: FC = () => {
                       confirm({
                         title: t("layout.logoutConfirm"),
                         icon: <LogoutOutlined />,
-                        onOk: () => dispatch(logout()),
+                        onOk() {
+                          dispatch(logout());
+                        },
                       });
                     },
                   },

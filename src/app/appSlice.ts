@@ -3,11 +3,12 @@ import axios from "axios";
 
 import { API_URL } from "../constants";
 import { AppState, UserResponseDTO } from "../types/interface";
+import { userStorage } from "../utils";
 import { RootState } from "./store";
 
 const initialState: AppState = {
   isLoading: false,
-  user: null,
+  user: userStorage.get("user") || null,
 };
 
 type LoginProps = { username: string; password: string };
@@ -39,6 +40,7 @@ const appSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       const { name, avatar, isAdmin } = action.payload;
       state.user = { name, avatar, isAdmin };
+      userStorage.set("user", { name, avatar, isAdmin });
       state.isLoading = false;
     });
     builder.addCase(login.rejected, (state) => {
