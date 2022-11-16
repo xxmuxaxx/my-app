@@ -58,6 +58,9 @@ const todoListSlice = createSlice({
         message: todo.text,
         isCompleted: todo.status === "1" ? true : false,
         createDate: todo.date,
+        user: todo.user_login || undefined,
+        userId: todo.user_id || undefined,
+        color: todo.color || undefined,
       }));
     });
   },

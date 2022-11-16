@@ -3,7 +3,7 @@ import { Button, Divider, List, Tag } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { selectIsLoading } from "../../app/appSlice";
+import { selectIsLoading, selectUser } from "../../app/appSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { AddTodoForm } from "./components/addTodoForm";
 import {
@@ -21,11 +21,11 @@ export const TodoList = () => {
 
   const isLoading = useAppSelector(selectIsLoading);
   const todos = useAppSelector(selectTodos);
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchTodos());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -43,26 +43,30 @@ export const TodoList = () => {
         renderItem={(todo) => (
           <List.Item
             key={todo.id}
-            actions={[
-              <Button
-                type="link"
-                onClick={() => {
-                  dispatch(toggleTodoIsCompleted(todo.id));
-                }}
-              >
-                {todo.isCompleted
-                  ? t("todo-list.done")
-                  : t("todo-list.not-done")}
-              </Button>,
-              <Button
-                type="link"
-                onClick={() => {
-                  dispatch(deleteTodo(todo.id));
-                }}
-              >
-                {t("actions.delete")}
-              </Button>,
-            ]}
+            actions={
+              user?.id === todo.userId
+                ? [
+                    <Button
+                      type="link"
+                      onClick={() => {
+                        dispatch(toggleTodoIsCompleted(todo.id));
+                      }}
+                    >
+                      {todo.isCompleted
+                        ? t("todo-list.done")
+                        : t("todo-list.not-done")}
+                    </Button>,
+                    <Button
+                      type="link"
+                      onClick={() => {
+                        dispatch(deleteTodo(todo.id));
+                      }}
+                    >
+                      {t("actions.delete")}
+                    </Button>,
+                  ]
+                : undefined
+            }
           >
             <List.Item.Meta
               avatar={
@@ -73,7 +77,12 @@ export const TodoList = () => {
                 )
               }
               title={todo.message}
-              description={<Tag>{todo.createDate}</Tag>}
+              description={
+                <>
+                  <Tag>{todo.createDate}</Tag>
+                  {todo.user && <Tag color={todo.color}>{todo.user}</Tag>}
+                </>
+              }
             />
           </List.Item>
         )}

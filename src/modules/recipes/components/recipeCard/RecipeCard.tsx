@@ -3,6 +3,7 @@ import "./recipeCard.scss";
 import { DeleteFilled } from "@ant-design/icons";
 import { Button, Card, Tooltip } from "antd";
 import { FC, MouseEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 const { Meta } = Card;
 
@@ -23,6 +24,8 @@ export const RecipeCard: FC<RecipeCardProps> = ({
   onDeleteClick,
   onOpenClick,
 }) => {
+  const { t } = useTranslation();
+
   const onButtonClick = (event: MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     onDeleteClick(id);
@@ -41,7 +44,7 @@ export const RecipeCard: FC<RecipeCardProps> = ({
     >
       <Meta title={title} description={description} />
       <div className="recipe-card__actions">
-        <Tooltip title="Удалить">
+        <Tooltip title={t("actions.delete")}>
           <Button
             type="primary"
             danger

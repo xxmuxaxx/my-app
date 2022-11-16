@@ -7,6 +7,9 @@ export type Todo = {
   message: string;
   createDate: string;
   isCompleted: boolean;
+  user?: string;
+  userId?: string;
+  color?: string;
 };
 
 export type TodoResponseDTO = {
