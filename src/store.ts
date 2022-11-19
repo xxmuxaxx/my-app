@@ -1,8 +1,8 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 
-import { recipesReducer } from "../modules/recipes";
-import { todoListReduces } from "../modules/todoList";
 import { appReducer } from "./appSlice";
+import { recipesReducer } from "./modules/recipes";
+import { todoListReduces } from "./modules/todoList";
 
 export const store = configureStore({
   reducer: {

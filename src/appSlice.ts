@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { API_URL } from "../constants";
-import { AppState, UserResponseDTO } from "../types/interface";
-import { userStorage } from "../utils";
+import { API_URL } from "./constants";
 import { RootState } from "./store";
+import { AppState, UserResponseDTO } from "./types/interface";
+import { userStorage } from "./utils";
 
 const initialState: AppState = {
   isLoading: false,

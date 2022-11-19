@@ -2,8 +2,8 @@ import { Button, PageHeader } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { ROUTES } from "../../../constants";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { RecipesList } from "../components/recipesList";
 import { deleteRecipe, selectRecipes } from "../recipesSlice";
 

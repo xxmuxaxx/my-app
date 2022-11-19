@@ -2,9 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import moment from "moment";
 
-import { setIsLoading } from "../../app/appSlice";
-import { RootState } from "../../app/store";
+import { setIsLoading } from "../../appSlice";
 import { API_URL } from "../../constants";
+import { RootState } from "../../store";
 import { getRandomId } from "../../utils/getRandomId";
 import { TodoListState, TodoResponseDTO } from "./types/interface";
 

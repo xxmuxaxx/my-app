@@ -3,7 +3,7 @@ import { FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { RecipeDetailCard } from "../components/recipeDetailCard";
 import { selectActiveRecipe, setActiveRecipeId } from "../recipesSlice";
 

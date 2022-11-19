@@ -1,7 +1,7 @@
 import { PageHeader } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { AddRecipeForm } from "../components/addRecipeForm";
 import {
   addRecipe,

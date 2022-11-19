@@ -1,6 +1,6 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RootState } from "../../app/store";
+import { RootState } from "../../store";
 import { userStorage } from "../../utils";
 import { getRandomId } from "../../utils/getRandomId";
 import { AddRecipeDTO, RecipesState } from "./types/interface";

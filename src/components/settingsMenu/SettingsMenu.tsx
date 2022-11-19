@@ -4,8 +4,8 @@ import { FC, useCallback, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
-import { logout, selectUser } from "../../app/appSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { logout, selectUser } from "../../appSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { LanguageContext, Languages } from "../../modules/languageProvider";
 
 const langLabels: Record<Languages, string> = {

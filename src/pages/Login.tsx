@@ -3,11 +3,11 @@ import { CSSProperties, FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { login, selectIsLoading } from "../app/appSlice";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { login, selectIsLoading } from "../appSlice";
 import type { LoginFormFilds } from "../components/loginForm";
 import { LoginForm } from "../components/loginForm";
 import { ROUTES } from "../constants";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const wrapperStyle: CSSProperties = {
   display: "flex",

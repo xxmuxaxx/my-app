@@ -1,8 +1,8 @@
 import { FC, ReactElement } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-import { selectUser } from "../app/appSlice";
-import { useAppSelector } from "../app/hooks";
+import { selectUser } from "../appSlice";
+import { useAppSelector } from "../hooks";
 import { ROUTES } from "../constants";
 
 type ProtectedRouteProps = {

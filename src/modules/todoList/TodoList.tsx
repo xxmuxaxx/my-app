@@ -3,8 +3,8 @@ import { Button, Divider, List, Tag } from "antd";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { selectIsLoading, selectUser } from "../../app/appSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectIsLoading, selectUser } from "../../appSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { AddTodoForm } from "./components/addTodoForm";
 import {
   addTodo,
