@@ -5,7 +5,7 @@ import { en, ge, ru } from "./locales";
 
 i18n.use(initReactI18next).init({
   resources: { en, ru, ge },
-  fallbackLng: "en",
+  fallbackLng: "ru",
   detection: {
     order: ["queryString", "cookie"],
   },

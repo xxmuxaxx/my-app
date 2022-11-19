@@ -15,6 +15,13 @@
       "password": "Пароль",
       "login": "Войти"
     },
+    "registration": {
+      "title": "Регистрация",
+      "username": "Логин",
+      "password": "Пароль",
+      "passwordConfirm": "Подтвердите пароль",
+      "errorConfirm": "Пароли должны совпадать!"
+    },
     "layout": {
       "home": "Главная",
       "todo-list": "Список дел",

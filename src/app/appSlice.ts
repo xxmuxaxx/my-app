@@ -22,6 +22,19 @@ export const login = createAsyncThunk<UserResponseDTO, LoginProps>(
   }
 );
 
+// TODO это надо бы доделать
+type RegisterProps = { username: string; password: string; confirm: string };
+export const register = createAsyncThunk<void, RegisterProps>(
+  "app/register",
+  async ({ username, password, confirm }) => {
+    const response = await axios.post(`${API_URL}/users/registration/`, {
+      username,
+      password,
+    });
+    console.log(response);
+  }
+);
+
 const appSlice = createSlice({
   name: "app",
   initialState,

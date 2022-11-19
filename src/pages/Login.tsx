@@ -1,11 +1,12 @@
+import { Button } from "antd";
 import { CSSProperties, FC } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { login, selectIsLoading } from "../app/appSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import type { LoginFormFilds } from "../components/loginForm";
 import { LoginForm } from "../components/loginForm";
-import type { LoginFormFilds } from "../components/loginForm/LoginForm";
 import { ROUTES } from "../constants";
 
 const wrapperStyle: CSSProperties = {
@@ -22,7 +23,7 @@ const cardStyles: CSSProperties = {
   borderRadius: 4,
 };
 
-export const Login: FC = () => {
+const Login: FC = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -45,9 +46,19 @@ export const Login: FC = () => {
       <div style={cardStyles}>
         <h1>{t("login.title")}</h1>
         <div>
-          <LoginForm isLoading={isLoading} onFinish={onLogin} />
+          <LoginForm
+            isLoading={isLoading}
+            additionalButton={
+              <Link to={ROUTES.REGISTRATION}>
+                <Button type="link">{t("registration.title")}</Button>
+              </Link>
+            }
+            onFinish={onLogin}
+          />
         </div>
       </div>
     </div>
   );
 };
+
+export default Login;
