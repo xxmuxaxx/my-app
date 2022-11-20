@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { register, selectIsLoading } from "../appSlice";
-import { useAppDispatch, useAppSelector } from "../hooks";
 import {
   RegistrationForm,
   RegistrationFormFilds,
 } from "../components/registrationForm";
 import { ROUTES } from "../constants";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const wrapperStyle: CSSProperties = {
   display: "flex",
