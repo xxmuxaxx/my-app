@@ -1,4 +1,4 @@
-import { Button, PageHeader } from "antd";
+import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,15 +24,12 @@ export const Recipes = () => {
 
   return (
     <div className="recipes">
-      <PageHeader
-        title={t("layout.recipes")}
-        style={{ margin: "0 0 24px", padding: 0 }}
-        extra={
-          <Link to={ROUTES.RECIPES_ADD}>
-            <Button type="primary">{t("recipes.add-new-recipe")}</Button>
-          </Link>
-        }
-      />
+      <div style={{ margin: "0 0 24px", padding: 0 }}>
+        <h1>{t("layout.recipes")}</h1>
+        <Link to={ROUTES.RECIPES_ADD}>
+          <Button type="primary">{t("recipes.add-new-recipe")}</Button>
+        </Link>
+      </div>
       <RecipesList recipes={recipes} onDelete={onDelete} onOpen={onOpen} />
     </div>
   );

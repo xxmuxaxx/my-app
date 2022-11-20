@@ -1,4 +1,3 @@
-import { PageHeader } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "../../../hooks";
@@ -25,10 +24,10 @@ export const AddRecipe = () => {
 
   return (
     <div className="add-recipe">
-      <PageHeader
-        title={t("layout.recipe-add")}
-        style={{ margin: "0 0 24px", padding: 0 }}
-      />
+      <div style={{ margin: "0 0 24px", padding: 0 }}>
+        <h1>{t("layout.recipe-add")}</h1>
+      </div>
+
       <AddRecipeForm
         initialValues={addRecipeFields}
         width={500}

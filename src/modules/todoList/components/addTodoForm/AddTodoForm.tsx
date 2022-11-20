@@ -1,5 +1,5 @@
 import { Button, Form, Input, Space } from "antd";
-import { useForm } from "antd/lib/form/Form";
+import { useForm } from "antd/es/form/Form";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 

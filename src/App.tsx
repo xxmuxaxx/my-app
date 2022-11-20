@@ -1,4 +1,4 @@
-import "antd/dist/antd.min.css";
+import "antd/dist/reset.css";
 import "flag-icons/css/flag-icons.min.css";
 
 import { Suspense } from "react";
