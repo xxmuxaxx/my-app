@@ -1,10 +1,11 @@
 import { LogoutOutlined } from "@ant-design/icons";
 import { Avatar, Menu, Modal } from "antd";
-import { FC, useCallback, useContext, useMemo } from "react";
+import { FC, useCallback, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { logout, selectUser } from "../../appSlice";
+import { ROUTES } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { LanguageContext, Languages } from "../../modules/languageProvider";
 
@@ -22,6 +23,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { language, changeLanguage } = useContext(LanguageContext);
   const langCode = language === "en" ? "us" : language;
@@ -36,46 +38,48 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
     });
   }, [dispatch, t]);
 
-  const items = useMemo(() => {
-    return [
-      {
-        key: "user",
-        label: <Avatar src={user?.avatar} shape="square" size="large" />,
-        children: [
-          {
-            key: "language",
-            label: langLabels[language],
-            icon: <span className={`fi fi-${langCode} fis`} />,
-            children: [
-              {
-                key: Languages.russian,
-                label: langLabels[Languages.russian],
-                onClick: () => changeLanguage(Languages.russian),
-              },
-              {
-                key: Languages.english,
-                label: langLabels[Languages.english],
-                onClick: () => changeLanguage(Languages.english),
-              },
-              {
-                key: Languages.georgian,
-                label: langLabels[Languages.georgian],
-                onClick: () => changeLanguage(Languages.georgian),
-              },
-            ],
-          },
-
-          {
-            key: "loguot",
-            label: t("layout.logout"),
-            icon: <LogoutOutlined />,
-            danger: true,
-            onClick: handleLogout,
-          },
-        ],
-      },
-    ];
-  }, [changeLanguage, handleLogout, langCode, language, t, user?.avatar]);
+  const items = [
+    {
+      key: "user",
+      label: <Avatar src={user?.avatar} shape="square" size="large" />,
+      children: [
+        {
+          key: "language",
+          label: langLabels[language],
+          icon: <span className={`fi fi-${langCode} fis`} />,
+          children: [
+            {
+              key: Languages.russian,
+              label: langLabels[Languages.russian],
+              onClick: () => changeLanguage(Languages.russian),
+            },
+            {
+              key: Languages.english,
+              label: langLabels[Languages.english],
+              onClick: () => changeLanguage(Languages.english),
+            },
+            {
+              key: Languages.georgian,
+              label: langLabels[Languages.georgian],
+              onClick: () => changeLanguage(Languages.georgian),
+            },
+          ],
+        },
+        {
+          key: "themeSettings",
+          label: "Настройки темы",
+          onClick: () => navigate(ROUTES.THEME_SETTINGS),
+        },
+        {
+          key: "loguot",
+          label: t("layout.logout"),
+          icon: <LogoutOutlined />,
+          danger: true,
+          onClick: handleLogout,
+        },
+      ],
+    },
+  ];
 
   return (
     <div className={className}>

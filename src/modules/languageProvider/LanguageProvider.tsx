@@ -4,7 +4,7 @@ import { ConfigProvider } from "antd";
 import en_US from "antd/es/locale/en_US";
 import ka_GE from "antd/es/locale/ka_GE";
 import ru_RU from "antd/es/locale/ru_RU";
-import { Locale } from "antd/lib/locale-provider";
+import { Locale } from "antd/es/locale-provider";
 import React, { createContext, FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 

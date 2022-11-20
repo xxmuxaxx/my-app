@@ -5,16 +5,19 @@ import { Suspense } from "react";
 import { HashRouter as Router } from "react-router-dom";
 
 import { LanguageProvider } from "./modules/languageProvider";
+import { ThemeProvider } from "./modules/theme";
 import { AppRouter } from "./routing/AppRouter";
 
 function App() {
   return (
     <LanguageProvider>
-      <Router>
-        <Suspense fallback={<div>Loading...</div>}>
-          <AppRouter />
-        </Suspense>
-      </Router>
+      <ThemeProvider>
+        <Router>
+          <Suspense fallback={<div>Loading...</div>}>
+            <AppRouter />
+          </Suspense>
+        </Router>
+      </ThemeProvider>
     </LanguageProvider>
   );
 }

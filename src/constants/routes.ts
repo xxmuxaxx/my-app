@@ -6,4 +6,5 @@ export const ROUTES = {
   RECIPES: "/recipes",
   RECIPES_ADD: "/recipes/add",
   RECIPE_DETAIL: "/recipes/:recipeId",
+  THEME_SETTINGS: "/theme-settings",
 };
