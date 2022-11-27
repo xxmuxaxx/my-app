@@ -1,1 +1,1 @@
-export const API_URL = "http://w91691o1.beget.tech/api/v1";
+export const API_URL = process.env.REACT_APP_API_URL;

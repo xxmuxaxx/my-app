@@ -1,4 +1,4 @@
-import { Input, Slider, Space } from "antd";
+import { Form, Input, Slider } from "antd";
 
 import { useThemeContext } from "../themeContext";
 
@@ -6,19 +6,23 @@ export const ThemeSettings = () => {
   const { theme, changeTheme } = useThemeContext();
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
-      <Slider
-        min={0}
-        max={8}
-        value={theme.borderRadius}
-        onChange={(value) => changeTheme({ borderRadius: value })}
-      />
+    <Form layout="vertical">
+      <Form.Item label="borderRadius">
+        <Slider
+          min={0}
+          max={8}
+          value={theme.borderRadius}
+          onChange={(value) => changeTheme({ borderRadius: value })}
+        />
+      </Form.Item>
 
-      <Input
-        type="color"
-        value={theme.colorPrimary}
-        onChange={(e) => changeTheme({ colorPrimary: e.target.value })}
-      />
-    </Space>
+      <Form.Item label="colorPrimary">
+        <Input
+          type="color"
+          value={theme.colorPrimary}
+          onChange={(e) => changeTheme({ colorPrimary: e.target.value })}
+        />
+      </Form.Item>
+    </Form>
   );
 };

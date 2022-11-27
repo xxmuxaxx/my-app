@@ -15,6 +15,7 @@ const breadcrumbNameMap: Record<string, string> = {
   [ROUTES.RECIPES]: "layout.recipes",
   [ROUTES.RECIPES_ADD]: "layout.recipe-add",
   [ROUTES.TODO_LIST]: "layout.todo-list",
+  [ROUTES.SUDOKU]: "layout.sudoku",
 };
 
 export const Layout: FC = () => {

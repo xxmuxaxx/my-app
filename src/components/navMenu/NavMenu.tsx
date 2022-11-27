@@ -34,6 +34,10 @@ export const NavMenu: FC<NavMenuProps> = ({ className }) => {
         key: ROUTES.RECIPES,
         label: <Link to={ROUTES.RECIPES}>{t("layout.recipes")}</Link>,
       },
+      {
+        key: ROUTES.SUDOKU,
+        label: <Link to={ROUTES.SUDOKU}>{t("layout.sudoku")}</Link>,
+      },
     ];
   }, [t]);
 

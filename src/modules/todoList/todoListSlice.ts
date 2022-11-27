@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 
 import { setIsLoading } from "../../appSlice";
 import { API_URL } from "../../constants";
@@ -33,7 +33,7 @@ const todoListSlice = createSlice({
       state.todos = state.todos.concat({
         id: getRandomId(),
         message: action.payload,
-        createDate: moment().format("DD.MM.YYYY hh:mm"),
+        createDate: dayjs().format("DD.MM.YYYY HH:mm"),
         isCompleted: false,
       });
     },

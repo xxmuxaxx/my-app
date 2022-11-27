@@ -4,7 +4,12 @@ import { Layout } from "../components/layout";
 import { ROUTES } from "../constants";
 import { AddRecipe, RecipeDetail, Recipes } from "../modules/recipes";
 import { TodoList } from "../modules/todoList";
-import { LoginPage, RegistrationPage, ThemeSettingsPage } from "./AppPages";
+import {
+  LoginPage,
+  RegistrationPage,
+  SudokuPage,
+  ThemeSettingsPage,
+} from "./AppPages";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRouter = () => {
@@ -19,6 +24,7 @@ export const AppRouter = () => {
         <Route path={ROUTES.RECIPES_ADD} element={<AddRecipe />} />
         <Route path={ROUTES.RECIPE_DETAIL} element={<RecipeDetail />} />
         <Route path={ROUTES.THEME_SETTINGS} element={<ThemeSettingsPage />} />
+        <Route path={ROUTES.SUDOKU} element={<SudokuPage />} />
       </Route>
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTRATION} element={<RegistrationPage />} />

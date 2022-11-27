@@ -1,6 +1,7 @@
 import { LogoutOutlined } from "@ant-design/icons";
 import { Avatar, Menu, Modal } from "antd";
-import { FC, useCallback, useContext } from "react";
+import { ItemType } from "antd/es/menu/hooks/useItems";
+import { FC, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -15,6 +16,12 @@ const langLabels: Record<Languages, string> = {
   [Languages.georgian]: "ქართული",
 };
 
+const langIconCodes: Record<Languages, string> = {
+  [Languages.russian]: "ru",
+  [Languages.english]: "us",
+  [Languages.georgian]: "ge",
+};
+
 type SettingsMenuProps = {
   className?: string;
 };
@@ -26,9 +33,8 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { language, changeLanguage } = useContext(LanguageContext);
-  const langCode = language === "en" ? "us" : language;
 
-  const handleLogout = useCallback(() => {
+  const handleLogout = () => {
     Modal.confirm({
       title: t("layout.logoutConfirm"),
       icon: <LogoutOutlined />,
@@ -36,9 +42,9 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
         dispatch(logout());
       },
     });
-  }, [dispatch, t]);
+  };
 
-  const items = [
+  const items: ItemType[] = [
     {
       key: "user",
       label: <Avatar src={user?.avatar} shape="square" size="large" />,
@@ -46,7 +52,11 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
         {
           key: "language",
           label: langLabels[language],
-          icon: <span className={`fi fi-${langCode} fis`} />,
+          icon: (
+            <div>
+              <span className={`fi fi-${langIconCodes[language]} fis`} />
+            </div>
+          ),
           children: [
             {
               key: Languages.russian,

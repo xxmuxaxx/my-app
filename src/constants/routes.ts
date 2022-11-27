@@ -7,4 +7,5 @@ export const ROUTES = {
   RECIPES_ADD: "/recipes/add",
   RECIPE_DETAIL: "/recipes/:recipeId",
   THEME_SETTINGS: "/theme-settings",
+  SUDOKU: "/sudoku",
 };

@@ -8,3 +8,9 @@ export const ThemeSettingsPage = lazy(() =>
     default: module.ThemeSettings,
   }))
 );
+
+export const SudokuPage = lazy(() =>
+  import("../modules/sudoku").then((module) => ({
+    default: module.Sudoku,
+  }))
+);
