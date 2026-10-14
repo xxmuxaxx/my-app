@@ -23,10 +23,14 @@ const recipesSlice = createSlice({
       const id = getRandomId();
       const addedRecipe = { id, ...(action.payload || state.addRecipeFields) };
       state.recipes = state.recipes.concat(addedRecipe);
+      state.addRecipeFields = {
+        ...initialState.addRecipeFields,
+        products: [""],
+      };
     },
     deleteRecipe: (state, action: PayloadAction<string>) => {
       state.recipes = state.recipes.filter(
-        (recipe) => recipe.id !== action.payload
+        (recipe) => recipe.id !== action.payload,
       );
     },
     setActiveRecipeId: (state, action: PayloadAction<string | null>) => {
@@ -51,7 +55,7 @@ export const selectActiveRecipeId = (state: RootState) =>
 export const selectActiveRecipe = createSelector(
   selectRecipes,
   selectActiveRecipeId,
-  (recipes, id) => (id ? recipes.find((recipe) => recipe.id === id) : null)
+  (recipes, id) => (id ? recipes.find((recipe) => recipe.id === id) : null),
 );
 export const selectAddRecipeFields = (state: RootState) =>
   state.recipes.addRecipeFields;

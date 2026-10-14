@@ -16,6 +16,7 @@ const breadcrumbNameMap: Record<string, string> = {
   [ROUTES.RECIPES_ADD]: "layout.recipe-add",
   [ROUTES.TODO_LIST]: "layout.todo-list",
   [ROUTES.SUDOKU]: "layout.sudoku",
+  [ROUTES.THEME_SETTINGS]: "theme.title",
 };
 
 export const Layout: FC = () => {
@@ -27,7 +28,11 @@ export const Layout: FC = () => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
     return {
       key: url,
-      title: <Link to={url}>{breadcrumbNameMap[url] ? t(breadcrumbNameMap[url]) : path}</Link>,
+      title: (
+        <Link to={url}>
+          {breadcrumbNameMap[url] ? t(breadcrumbNameMap[url]) : path}
+        </Link>
+      ),
     };
   });
 
@@ -43,7 +48,10 @@ export const Layout: FC = () => {
       </Header>
       <Content>
         <div className="container">
-          <Breadcrumb style={{ margin: "0 0 12px 0" }} items={breadcrumbItems} />
+          <Breadcrumb
+            style={{ margin: "0 0 12px 0" }}
+            items={breadcrumbItems}
+          />
           <Outlet />
         </div>
       </Content>

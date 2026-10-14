@@ -27,7 +27,7 @@ export const RecipeDetail: FC = () => {
 
   useEffect(() => {
     if (recipe === undefined) {
-      message.error(t("recipe-not-found"), 1.5, () => navigate(-1));
+      message.error(t("recipes.recipe-not-found"), 1.5, () => navigate(-1));
     }
   }, [message, navigate, recipe, t]);
 

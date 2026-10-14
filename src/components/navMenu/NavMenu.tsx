@@ -22,7 +22,9 @@ export const NavMenu: FC<NavMenuProps> = ({ className }) => {
         key: ROUTES.INDEX,
         label: (
           <Tooltip title={t("layout.home")}>
-            <Link to="/" children={<HomeFilled />} />
+            <Link to={ROUTES.INDEX} aria-label={t("layout.home")}>
+              <HomeFilled />
+            </Link>
           </Tooltip>
         ),
       },

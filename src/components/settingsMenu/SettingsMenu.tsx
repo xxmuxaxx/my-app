@@ -1,6 +1,7 @@
 import { SettingOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import { FC, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ROUTES } from "../../constants";
@@ -23,6 +24,7 @@ type SettingsMenuProps = {
 };
 
 export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { language, changeLanguage } = useContext(LanguageContext);
@@ -30,7 +32,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
   const items: MenuProps["items"] = [
     {
       key: "user",
-      label: <SettingOutlined aria-label="Settings" />,
+      label: <SettingOutlined aria-label={t("theme.title")} />,
       children: [
         {
           key: "language",
@@ -60,7 +62,7 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
         },
         {
           key: "themeSettings",
-          label: "Настройки темы",
+          label: t("theme.title"),
           onClick: () => navigate(ROUTES.THEME_SETTINGS),
         },
       ],

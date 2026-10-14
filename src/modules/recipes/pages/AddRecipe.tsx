@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../constants";
 
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { AddRecipeForm } from "../components/addRecipeForm";
@@ -11,11 +13,13 @@ import { AddRecipeDTO } from "../types/interface";
 
 export const AddRecipe = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const addRecipeFields = useAppSelector(selectAddRecipeFields);
 
-  const onFinish = () => {
-    dispatch(addRecipe());
+  const onFinish = (values: AddRecipeDTO) => {
+    dispatch(addRecipe(values));
+    navigate(ROUTES.RECIPES, { replace: true });
   };
 
   const onChange = (values: AddRecipeDTO) => {
