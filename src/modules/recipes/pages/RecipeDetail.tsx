@@ -1,4 +1,4 @@
-import { message } from "antd";
+import { App } from "antd";
 import { FC, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { RecipeDetailCard } from "../components/recipeDetailCard";
 import { selectActiveRecipe, setActiveRecipeId } from "../recipesSlice";
 
 export const RecipeDetail: FC = () => {
+  const { message } = App.useApp();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ export const RecipeDetail: FC = () => {
   const { recipeId } = useParams();
 
   useEffect(() => {
-    recipeId && dispatch(setActiveRecipeId(recipeId));
+    if (recipeId) dispatch(setActiveRecipeId(recipeId));
 
     return () => {
       dispatch(setActiveRecipeId(null));
@@ -28,7 +29,7 @@ export const RecipeDetail: FC = () => {
     if (recipe === undefined) {
       message.error(t("recipe-not-found"), 1.5, () => navigate(-1));
     }
-  }, [navigate, recipe, t]);
+  }, [message, navigate, recipe, t]);
 
   return recipe ? <RecipeDetailCard recipe={recipe} /> : null;
 };

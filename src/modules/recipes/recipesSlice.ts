@@ -1,12 +1,11 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
-import { userStorage } from "../../utils";
 import { getRandomId } from "../../utils/getRandomId";
 import { AddRecipeDTO, RecipesState } from "./types/interface";
 
 const initialState: RecipesState = {
-  recipes: userStorage.get("recipes") || [],
+  recipes: [],
   activeRecipeId: null,
   addRecipeFields: {
     title: "",
@@ -24,13 +23,11 @@ const recipesSlice = createSlice({
       const id = getRandomId();
       const addedRecipe = { id, ...(action.payload || state.addRecipeFields) };
       state.recipes = state.recipes.concat(addedRecipe);
-      userStorage.set("recipes", state.recipes);
     },
     deleteRecipe: (state, action: PayloadAction<string>) => {
       state.recipes = state.recipes.filter(
         (recipe) => recipe.id !== action.payload
       );
-      userStorage.set("recipes", state.recipes);
     },
     setActiveRecipeId: (state, action: PayloadAction<string | null>) => {
       state.activeRecipeId = action.payload;

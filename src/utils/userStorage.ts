@@ -5,12 +5,8 @@ class UserStorage {
    * @param {string} key - Ключ записи.
    * @param {string} value - Значение записи.
    */
-  set(key: string, value: string | {}): void {
-    if (value instanceof Object) {
-      localStorage.setItem(key, JSON.stringify(value));
-    } else {
-      localStorage.setItem(key, value);
-    }
+  set(key: string, value: unknown): void {
+    localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
   }
 
   /**
@@ -18,12 +14,12 @@ class UserStorage {
    * @param {string} key - Ключ записи.
    * @return {string|null} Возвращает строку или Null
    */
-  get<T extends string | {}>(key: string): T | null {
+  get<T>(key: string): T | null {
     let parsed;
 
     try {
       parsed = JSON.parse(localStorage.getItem(key) as string);
-    } catch (e) {
+    } catch {
       parsed = localStorage.getItem(key);
     }
 

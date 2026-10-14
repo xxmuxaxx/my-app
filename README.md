@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# My App — локальное приложение
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+React 19, TypeScript, Vite, Ant Design, Redux Toolkit и i18next. Приложение работает без backend и учётных записей.
 
-## Available Scripts
+## Запуск
 
-In the project directory, you can run:
+Node.js 22.12+ или более новая поддерживаемая LTS-версия.
 
-### `npm start`
+```sh
+npm ci
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Откройте http://localhost:3000. Настройка API не требуется.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Данные
 
-### `npm test`
+Задачи и рецепты автоматически сохраняются в IndexedDB после изменений и загружаются до открытия интерфейса. Рецепты из прежнего localStorage переносятся при первом запуске; исходные записи остаются резервной копией. Язык и тема сохраняются в localStorage.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Данные принадлежат браузеру и origin (протокол, домен, порт). Используйте один адрес и порт, чтобы видеть прежние данные. Очистка данных сайта удаляет локальные записи. Между устройствами данные не синхронизируются. Ссылки на изображения рецептов могут требовать интернет. Полная работа offline после закрытия страницы не предусмотрена: для загрузки приложения нужен статический сервер.
 
-### `npm run build`
+Главная страница открывает список задач. Старые ссылки входа/регистрации перенаправляются туда же. Запросов к Beget и API нет.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Команды
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `npm run dev` / `npm start` — разработка.
+- `npm run typecheck` — проверка типов.
+- `npm run lint` — ESLint.
+- `npm test` — тесты интерфейса, маршрутов, IndexedDB и миграции данных.
+- `npm run test:watch` — тесты в режиме наблюдения.
+- `npm run build` — проверка типов и сборка в `dist/`.
+- `npm run preview` — просмотр сборки.
+- `npm run format` — Prettier.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Развёртывание
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Разместите содержимое `dist/` на статическом хостинге. Относительный `base` поддерживает подкаталоги; HashRouter не требует серверного rewrite. Для новых записей используется `crypto.randomUUID()`: в production необходим HTTPS (localhost подходит для разработки).

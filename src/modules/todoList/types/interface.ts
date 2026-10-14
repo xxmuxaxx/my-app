@@ -11,14 +11,3 @@ export type Todo = {
   userId?: string;
   color?: string;
 };
-
-export type TodoResponseDTO = {
-  color: string | false;
-  date: string;
-  general: string;
-  id: string;
-  status: "0" | "1";
-  text: string;
-  user_id: string;
-  user_login: string | false;
-};

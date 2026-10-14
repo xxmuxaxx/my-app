@@ -1,2 +1,3 @@
-export { LanguageContext, LanguageProvider } from "./LanguageProvider";
+export { LanguageProvider } from "./LanguageProvider";
+export { LanguageContext } from "./languageContext";
 export { Languages } from "./types/interface";

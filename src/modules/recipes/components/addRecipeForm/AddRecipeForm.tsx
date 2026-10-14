@@ -20,8 +20,8 @@ export const AddRecipeForm: FC<AddRecipeFormProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const onValuesChange = (_: any, values: AddRecipeDTO) => {
-    onChange && onChange(values);
+  const onValuesChange = (_: Partial<AddRecipeDTO>, values: AddRecipeDTO) => {
+    onChange?.(values);
   };
 
   return (

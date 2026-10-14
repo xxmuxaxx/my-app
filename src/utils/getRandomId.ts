@@ -1,3 +1,1 @@
-export const getRandomId = () => {
-  return Date.now().toString();
-};
+export const getRandomId = () => crypto.randomUUID();

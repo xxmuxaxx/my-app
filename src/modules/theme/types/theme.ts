@@ -1,6 +1,6 @@
-import { AliasToken } from "antd/es/theme";
+import { ThemeConfig } from "antd";
 
-export type Theme = Partial<AliasToken>;
+export type Theme = NonNullable<ThemeConfig['token']>;
 
 export type ThemeContext = {
   theme: Theme;

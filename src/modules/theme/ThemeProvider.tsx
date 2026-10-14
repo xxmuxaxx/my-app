@@ -1,4 +1,4 @@
-import { ConfigProvider } from "antd";
+import { App, ConfigProvider } from "antd";
 import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 
 import { userStorage } from "../../utils";
@@ -22,7 +22,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 
   return (
     <Provider value={{ theme, changeTheme }}>
-      <ConfigProvider theme={{ token: theme }}>{children}</ConfigProvider>
+      <ConfigProvider theme={{ token: theme }}><App>{children}</App></ConfigProvider>
     </Provider>
   );
 };

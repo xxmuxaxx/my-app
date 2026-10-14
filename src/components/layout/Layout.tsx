@@ -25,17 +25,14 @@ export const Layout: FC = () => {
 
   const extraBreadcrumbItems = pathSnippets.map((path, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
-    return (
-      <Breadcrumb.Item key={url}>
-        <Link to={url}>{t(breadcrumbNameMap[url]) || path}</Link>
-      </Breadcrumb.Item>
-    );
+    return {
+      key: url,
+      title: <Link to={url}>{breadcrumbNameMap[url] ? t(breadcrumbNameMap[url]) : path}</Link>,
+    };
   });
 
   const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">{t("layout.home")}</Link>
-    </Breadcrumb.Item>,
+    { key: "home", title: <Link to="/">{t("layout.home")}</Link> },
   ].concat(extraBreadcrumbItems);
 
   return (
@@ -46,9 +43,7 @@ export const Layout: FC = () => {
       </Header>
       <Content>
         <div className="container">
-          <Breadcrumb style={{ margin: "0 0 12px 0" }}>
-            {breadcrumbItems}
-          </Breadcrumb>
+          <Breadcrumb style={{ margin: "0 0 12px 0" }} items={breadcrumbItems} />
           <Outlet />
         </div>
       </Content>

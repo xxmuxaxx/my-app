@@ -13,7 +13,9 @@
       "title": "Log in to the system",
       "username": "Username",
       "password": "Password",
-      "login": "Login"
+      "login": "Login",
+      "forbidden": "The API server rejected the request (403). Check API availability and hosting settings.",
+      "connectionError": "Unable to sign in. Check your connection and API availability."
     },
     "layout": {
       "home": "Home",

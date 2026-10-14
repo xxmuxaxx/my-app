@@ -1,13 +1,9 @@
-import { LogoutOutlined } from "@ant-design/icons";
-import { Avatar, Menu, Modal } from "antd";
-import { ItemType } from "antd/es/menu/hooks/useItems";
+import { SettingOutlined } from "@ant-design/icons";
+import { Menu, MenuProps } from "antd";
 import { FC, useContext } from "react";
-import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { logout, selectUser } from "../../appSlice";
 import { ROUTES } from "../../constants";
-import { useAppDispatch, useAppSelector } from "../../hooks";
 import { LanguageContext, Languages } from "../../modules/languageProvider";
 
 const langLabels: Record<Languages, string> = {
@@ -27,27 +23,14 @@ type SettingsMenuProps = {
 };
 
 export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const user = useAppSelector(selectUser);
   const { language, changeLanguage } = useContext(LanguageContext);
 
-  const handleLogout = () => {
-    Modal.confirm({
-      title: t("layout.logoutConfirm"),
-      icon: <LogoutOutlined />,
-      onOk() {
-        dispatch(logout());
-      },
-    });
-  };
-
-  const items: ItemType[] = [
+  const items: MenuProps["items"] = [
     {
       key: "user",
-      label: <Avatar src={user?.avatar} shape="square" size="large" />,
+      label: <SettingOutlined aria-label="Settings" />,
       children: [
         {
           key: "language",
@@ -79,13 +62,6 @@ export const SettingsMenu: FC<SettingsMenuProps> = ({ className }) => {
           key: "themeSettings",
           label: "Настройки темы",
           onClick: () => navigate(ROUTES.THEME_SETTINGS),
-        },
-        {
-          key: "loguot",
-          label: t("layout.logout"),
-          icon: <LogoutOutlined />,
-          danger: true,
-          onClick: handleLogout,
         },
       ],
     },
